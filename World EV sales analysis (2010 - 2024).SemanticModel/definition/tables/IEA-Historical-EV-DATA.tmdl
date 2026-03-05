@@ -1,0 +1,97 @@
+table IEA-Historical-EV-DATA
+	lineageTag: 34f536c8-726b-4fa1-a849-841526b5a50c
+
+	measure 'Sales Amount Last Year' = CALCULATE(sum('IEA-Historical-EV-DATA'[Sales Amount]),SAMEPERIODLASTYEAR('Date'[Date]))
+		formatString: #,0
+		lineageTag: bf0c5bce-20e3-49da-900e-2b40e1d3db39
+
+	measure 'Sales Amount YoY' = sum('IEA-Historical-EV-DATA'[Sales Amount]) - [Sales Amount Last Year]
+		formatString: 0
+		lineageTag: 21badfd7-413f-4c74-a864-9fdf621a9a97
+
+	measure 'Sales  Amount YoY %' = DIVIDE([Sales Amount YoY],[Sales Amount Last Year])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 97027819-3589-4a4e-8c19-1979985f7534
+
+	column Country/Region
+		dataType: string
+		lineageTag: 06b603db-8121-4422-ace8-183c4f20e7ed
+		summarizeBy: none
+		sourceColumn: Country/Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column EV_Category
+		dataType: string
+		lineageTag: 60e3843e-b2b1-496d-88d1-0ab67774d2d3
+		summarizeBy: none
+		sourceColumn: EV_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 01f6c927-16bd-48ff-9a62-9ec50415b990
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 2572e1ff-f08c-4c0e-974c-296059dbab4a
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Amount'
+		dataType: int64
+		formatString: #,0
+		lineageTag: fccc6d80-e1bb-4d1f-b08b-bde549dd6839
+		summarizeBy: sum
+		sourceColumn: Sales Amount
+
+		annotation SummarizationSetBy = User
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 0fd96867-22a3-4f49-bc9b-92d59eeaa1dc
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition IEA-Historical-EV-DATA = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Alex\Documents\Data\Electric car sales (2010-2024)\IEA-EV-dataEV salesHistoricalCars.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"region", type text}, {"category", type text}, {"parameter", type text}, {"mode", type text}, {"powertrain", type text}, {"year", Int64.Type}, {"unit", type text}, {"value", type number}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"category"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each ([unit] = "Vehicles")),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows",{{"year", Order.Ascending}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Sorted Rows",{"mode"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"parameter", "category"}, {"powertrain", "ev_category"}}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Renamed Columns",{"category"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns2",{{"value", "Sales "}, {"region", "Country/Region"}, {"ev_category", "EV_Category"}, {"year", "Year"}, {"unit", "Unit"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Sales ", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Custom", each #date(Number.From([Year]),6,15)),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Custom",{{"Custom", "Date"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns2",{{"Date", type date}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type2", each ([#"Country/Region"] <> "World")),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Filtered Rows1",{{"Sales ", "Sales Amount"}})
+				in
+				    #"Renamed Columns3"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
