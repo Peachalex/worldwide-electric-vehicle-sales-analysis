@@ -1,0 +1,31 @@
+table Date
+	lineageTag: 1d40b84b-86a8-42ad-9845-b68c40b4371f
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: yyyy-mm
+		lineageTag: b4c225a8-9014-4da0-826b-4682603d64df
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year = YEAR('Date'[Date])
+		formatString: 0
+		lineageTag: a964cedf-cde0-4a50-84fe-d631680ade47
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source = CALENDAR(MIN('IEA-Historical-EV-DATA'[Date]),MAX('IEA-Historical-EV-DATA'[Date]))
+
+	annotation PBI_Id = 6de8dd2337df4dbf8bf84059d175d7c8
+

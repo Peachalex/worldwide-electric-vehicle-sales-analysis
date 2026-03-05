@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "8383f8a184c9b154680c",
+  "position": {
+    "x": 725.74521218671453,
+    "y": 0,
+    "z": 1000,
+    "height": 359.51888514979572,
+    "width": 554.03469987636436,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "IEA-Historical-EV-DATA"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "IEA-Historical-EV-DATA.Date.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "Date Year",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "IEA-Historical-EV-DATA"
+                    }
+                  },
+                  "Property": "EV_Category"
+                }
+              },
+              "queryRef": "IEA-Historical-EV-DATA.EV_Category",
+              "nativeQueryRef": "EV_Category"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "IEA-Historical-EV-DATA"
+                        }
+                      },
+                      "Property": "Sales Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(IEA-Historical-EV-DATA.Sales Amount)",
+              "nativeQueryRef": "Sum of Sales "
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'EV Sales Amount 2010-2024'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

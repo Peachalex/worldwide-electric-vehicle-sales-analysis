@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU02",
+      "reportVersionAtImport": {
+        "visual": "2.6.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU02",
+          "path": "BaseThemes/CY26SU02.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Flag_of_China3876840342365606.png",
+          "path": "Flag_of_China3876840342365606.png",
+          "type": "Image"
+        },
+        {
+          "name": "map_of_europe_witout_russia008304679755835043.png",
+          "path": "map_of_europe_witout_russia008304679755835043.png",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_France.svg73076470512431.png",
+          "path": "500px-Flag_of_France.svg73076470512431.png",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_the_United_State6595109113838002.webp",
+          "path": "500px-Flag_of_the_United_State6595109113838002.webp",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_Germany.svg21528621073319176.webp",
+          "path": "500px-Flag_of_Germany.svg21528621073319176.webp",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_Japan.svg8122669388335175.webp",
+          "path": "500px-Flag_of_Japan.svg8122669388335175.webp",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_Australia_(conve39535222070782117.webp",
+          "path": "500px-Flag_of_Australia_(conve39535222070782117.webp",
+          "type": "Image"
+        },
+        {
+          "name": "500px-Flag_of_the_United_Kingd6584453731828267.webp",
+          "path": "500px-Flag_of_the_United_Kingd6584453731828267.webp",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}
