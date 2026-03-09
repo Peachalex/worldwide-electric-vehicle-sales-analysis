@@ -23,7 +23,7 @@ Microsoft Power BI Desktop
 ![United States](https://github.com/Peachalex/worldwide-electric-vehicle-sales-analysis/blob/main/imgs/Screenshot%202026-03-09%20140259.png)
 
 ## Acknowledgements
-- This project is inspired by IEA(International Eneergy Angency)
+- This project is inspired by IEA(International Energy Angency)
 - Many thanks to Kaggle
   
 ## Contact 
