@@ -1,6 +1,8 @@
 ![World Map](https://github.com/Peachalex/worldwide-electric-vehicle-sales-analysis/blob/main/imgs/world%20map.PNG)
+
 # worldwide-electric-vehicle-sales-analysis
 Analyze the Worldwide Electric Vehicle historical sales data from IEA (International Energy Agency) and estimate the performance of main markets from different aspects
+
 # Table of Contents
 * [Objectives](#Objectives)
 * [Tools](#Tools)
@@ -27,9 +29,9 @@ Microsoft Power BI Desktop
 - Many thanks to Kaggle
   
 ## Contact 
-Email: siyuantao39@gmail.com
-LinkedIn: https://www.linkedin.com/in/alext41/
-Twitter(X): https://x.com/AlextheAcari
+- Email: siyuantao39@gmail.com
+- LinkedIn: https://www.linkedin.com/in/alext41/
+- Twitter(X): https://x.com/AlextheAcari
 
 
 
