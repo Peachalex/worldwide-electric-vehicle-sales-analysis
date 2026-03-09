@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "15aba5ba8a31097804a0",
+  "name": "5253862e50c0409acaeb",
   "position": {
-    "x": 307.35776608737996,
-    "y": 0,
-    "z": 0,
-    "height": 373.40698816147653,
-    "width": 972.427655684966,
-    "tabOrder": 0
+    "x": 213.96739619922545,
+    "y": 388.36088526442489,
+    "z": 4000,
+    "height": 331.34762922387893,
+    "width": 1065.8125158638534,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "map",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,67 +20,77 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "IEA-Historical-EV-DATA"
+                      "Entity": "Date"
                     }
                   },
-                  "Property": "Country/Region"
+                  "Property": "Date"
                 }
               },
-              "queryRef": "IEA-Historical-EV-DATA.region",
-              "nativeQueryRef": "Country/Region",
+              "queryRef": "Date.Date",
+              "nativeQueryRef": "Date",
               "active": true
             }
           ]
         },
-        "Size": {
+        "Y": {
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "IEA-Historical-EV-DATA"
-                        }
-                      },
-                      "Property": "Sales Amount"
+                    "SourceRef": {
+                      "Entity": "IEA-Historical-EV-DATA"
                     }
                   },
-                  "Function": 0
+                  "Property": "Sales  Amount YoY %"
                 }
               },
-              "queryRef": "Sum(IEA-Historical-EV-DATA.Sales )",
-              "nativeQueryRef": "Sum of Sales "
+              "queryRef": "IEA-Historical-EV-DATA.Sales YoY %",
+              "nativeQueryRef": "Sales  Amount YoY %"
             }
           ]
         }
       },
       "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
         "isDefaultSort": true
       }
     },
     "objects": {
-      "categoryLabels": [
+      "valueAxis": [
         {
           "properties": {
-            "show": {
+            "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
           }
         }
       ],
-      "bubbles": [
+      "categoryAxis": [
         {
           "properties": {
-            "bubbleSize": {
+            "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "-15L"
+                  "Value": "false"
                 }
               }
             }
@@ -95,7 +105,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'EV Market Regions'"
+                  "Value": "'EV Sales Amount Growth 2010-2024'"
                 }
               }
             }
@@ -108,34 +118,29 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "769079a20c6369010190",
+        "name": "2f99c3e9aac2878c0548",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "IEA-Historical-EV-DATA"
+                "Entity": "Date"
               }
             },
-            "Property": "Country/Region"
+            "Property": "Date"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "bec5256a00cb392285b7",
+        "name": "b7b058952ae8a3446570",
         "field": {
-          "Aggregation": {
+          "Measure": {
             "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "IEA-Historical-EV-DATA"
-                  }
-                },
-                "Property": "Sales Amount"
+              "SourceRef": {
+                "Entity": "IEA-Historical-EV-DATA"
               }
             },
-            "Function": 0
+            "Property": "Sales  Amount YoY %"
           }
         },
         "type": "Advanced"
